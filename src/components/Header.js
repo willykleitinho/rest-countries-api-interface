@@ -1,21 +1,22 @@
 import styled from 'styled-components';
 
-const StyledHeader = styled.header`
-  border-bottom: 1px solid black;
+const HeaderStyled = styled.header`
   color: var(--DarkGray-LightModeInput);
-  padding: 0.5rem var(--side-padding);
+  padding: 2rem var(--side-padding);
+  background: var(--clr-background-elements);
+  display: flex;
 
   .title {
-    font-size: 1.5rem;
-
+    font-size: 1rem;
+    flex: 1;
   }
 `;
 
 export default function Header() {
   return (
-    <StyledHeader>
+    <HeaderStyled>
       <h1 className='title'>Where in the world?</h1>
       <button onClick={() => console.log('theme toggled.')}>theme</button>
-    </StyledHeader>
+    </HeaderStyled>
   );
 }

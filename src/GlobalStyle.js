@@ -4,15 +4,15 @@ const GlobalStyle = createGlobalStyle`
   :root {
     /*
 
-    --DarkBlue-DarkModeElements: hsl(209, 23%, 22%);
-    --VeryDarkBlue-DarkModeBackground: hsl(207, 26%, 17%);
-    --VeryDarkBlue-LightModeText: hsl(200, 15%, 8%);
-    --DarkGray-LightModeInput: hsl(0, 0%, 52%);
-    --VeryLightGray-LightModeBackground: hsl(0, 0%, 98%);
-    --White-DarkModeTextLightModeElements: hsl(0, 0%, 100%);
+    --DarkBlue-Dark Mode Elements: hsl(209, 23%, 22%);
+    --VeryDarkBlue-Dark Mode Background: hsl(207, 26%, 17%);
+    --VeryDarkBlue-Light Mode Text: hsl(200, 15%, 8%);
+    --DarkGray-Light Mode Input: hsl(0, 0%, 52%);
+    --VeryLightGray-Light Mode Background: hsl(0, 0%, 98%);
+    --White-Dark Mode Text Light Mode Elements: hsl(0, 0%, 100%);
 
     */
-
+    --clr-background-elements: hsl(0, 0%, 100%);
     --clr-background: hsl(0, 0%, 98%);
     --clr-text: hsl(200, 15%, 8%);
 
@@ -43,6 +43,12 @@ const GlobalStyle = createGlobalStyle`
     font-family: var(--font-family);
     background: var(--clr-background);
     color: var(--clr-text);
+  }
+
+  .dark-theme {
+    --clr-background: hsl(207, 26%, 17%);
+    --clr-text: hsl(0, 0%, 100%);
+    --clr-background-elements: hsl(209, 23%, 22%);
   }
 `;
 
