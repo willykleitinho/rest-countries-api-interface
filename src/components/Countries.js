@@ -1,5 +1,14 @@
 import styled from 'styled-components';
 
+const AStyled = styled.a`
+  color: var(--clr-text);
+  text-decoration: none;
+
+  &:visited {
+    color: var(--clr-text);
+  }
+`;;
+
 const SectionStyled = styled.section`
   width: 100%;
   background: var(--clr-background-elements);
@@ -30,8 +39,7 @@ const SectionStyled = styled.section`
   }
 `;
 
-export default function Country({flagSrc, name, population, region, capital}) {
-
+function Country({flagSrc, name, population, region, capital}) {
   return (
     <SectionStyled>
       <img src={flagSrc} alt='flag' />
@@ -43,4 +51,18 @@ export default function Country({flagSrc, name, population, region, capital}) {
       </div>
     </SectionStyled>
   );
+}
+
+export default function Countries({countries, updatePage}) {
+  if (countries.status === 404) {
+    return (<h1>not found</h1>);
+  }
+
+  return countries.map(({alpha3Code, name, flags, population, region, capital}) => {
+    return (
+      <AStyled key={alpha3Code} id={alpha3Code} href={`#${alpha3Code}`} onClick={updatePage}>
+        <Country  name={name} flagSrc={flags.svg} population={population} region={region} capital={capital} />
+      </AStyled>
+    );
+  });
 }

@@ -16,7 +16,7 @@ export default function Header() {
   return (
     <HeaderStyled>
       <h1 className='title'>Where in the world?</h1>
-      <button onClick={() => console.log('theme toggled.')}>theme</button>
+      <button onClick={() => (document.body.className) ? document.body.className = '' : document.body.className = 'dark-theme'}>theme</button>
     </HeaderStyled>
   );
 }

@@ -27,12 +27,12 @@ const FormStyled = styled.form`
   flex-direction: column;
 `;
 
-export default function SearchForm() {
+export default function SearchForm({handleSubmit}) {
   const [value, setValue] = useState('');
 
   return (
-    <FormStyled>
-      <InputStyled type='text' value={value}
+    <FormStyled onSubmit={handleSubmit}>
+      <InputStyled name='name' type='text' value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder='Search for a country...' />
       
