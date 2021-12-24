@@ -46,12 +46,18 @@ const UlStyled = styled.ul`
   }
 `;
 
-export default function CountryInfo({data, updatePage}) {
-
+export default function CountryInfo({updatePage, code}) {
+  
   const [borderCountries, setBorderCountries] = useState(null);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch(`https://restcountries.com/v2/alpha?codes=${data.borders.join(',')}`)
+    fetch(`https://restcountries.com/v2/alpha/${code}`)
+    .then(response => response.json()).then(data => {
+      console.log(data);
+      setData(data);
+
+      fetch(`https://restcountries.com/v2/alpha?codes=${data.borders.join(',')}`)
       .then(response => response.json())
       .then(data => setBorderCountries(data.map(item => {
         return {
@@ -59,39 +65,45 @@ export default function CountryInfo({data, updatePage}) {
           alpha3Code: item.alpha3Code
         };
       })))
-  }, []);
+    });
+  }, [code]);
 
   return (
     <ContainerStyled>
-      <img src={data.flag} alt='country flag' />
-      <h2>{data.name}</h2>
-      <div>
-        <p>Native name: <span>{data.nativeName}</span></p>
-        <p>Population: <span>{data.population}</span></p>
-        <p>Region: <span>{data.region}</span></p>
-        <p>Sub Region: <span>{data.subregion}</span></p>
-        <p>Capital: <span>{data.capital}</span></p>
-      </div>
-      <div>
-        <p>Top Level Domain: <span>{data.topLevelDomain.join(' - ')}</span></p>
-        <p>Currencies: <span>{data.currencies.map(item => item.name).join(', ')}</span></p>
-        <p>Languages: <span>{data.languages.map(item => item.name).join(', ')}</span></p>
-      </div>
-      <div>
-        <p>Border countries:</p>
-        {!borderCountries ?
-          <Spinner /> :
-          <UlStyled>
-            {borderCountries.map(country => (
-              <li key={country.alpha3Code}>
-                <a href={`#${country.alpha3Code}`} id={country.alpha3Code} onClick={updatePage}>
-                  {country.name}
-                </a>
-              </li>
-            ))}
-          </UlStyled>
-        }
-      </div>
+      {(!data)
+        ? <Spinner />
+        : <>
+          <img src={data.flag} alt='country flag' />
+          <h2>{data.name}</h2>
+          <div>
+            <p>Native name: <span>{data.nativeName}</span></p>
+            <p>Population: <span>{data.population}</span></p>
+            <p>Region: <span>{data.region}</span></p>
+            <p>Sub Region: <span>{data.subregion}</span></p>
+            <p>Capital: <span>{data.capital}</span></p>
+          </div>
+          <div>
+            <p>Top Level Domain: <span>{data.topLevelDomain.join(' - ')}</span></p>
+            <p>Currencies: <span>{data.currencies.map(item => item.name).join(', ')}</span></p>
+            <p>Languages: <span>{data.languages.map(item => item.name).join(', ')}</span></p>
+          </div>
+          <div>
+            <p>Border countries:</p>
+            {!borderCountries ?
+              <Spinner /> :
+              <UlStyled>
+                {borderCountries.map(country => (
+                  <li key={country.alpha3Code} onClick={() => setData(null)}>
+                    <a href={`#${country.alpha3Code}`} id={country.alpha3Code} onClick={updatePage}>
+                      {country.name}
+                    </a>
+                  </li>
+                ))}
+              </UlStyled>
+            }
+          </div>
+        </>
+      }
     </ContainerStyled>
   );
 }
