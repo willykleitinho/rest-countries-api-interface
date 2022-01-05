@@ -1,16 +1,5 @@
 import styled from 'styled-components';
 
-const AStyled = styled.a`
-  color: var(--clr-text);
-  text-decoration: none;
-  margin-bottom: 2.5rem;
-  flex-shrink: 0;
-
-  &:visited {
-    color: var(--clr-text);
-  }
-`;;
-
 const SectionStyled = styled.section`
   width: 100%;
   background: var(--clr-background-elements);
@@ -25,18 +14,18 @@ const SectionStyled = styled.section`
   }
 
   .info {
-    padding: 1.35rem 1.5rem;
+    padding: 1.6rem 1.5rem;
     padding-bottom: 2.5rem;
 
     h2 {
       margin-bottom: 1rem;
-      font-size: 1.15rem;
+      font-size: 1.11rem;
     }
 
     p {
       font-weight: 600;
       margin-bottom: 0.25rem;
-      font-size: 0.9rem;
+      font-size: 0.87rem;
     }
     
     span {
@@ -68,12 +57,22 @@ const DivStyled = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: stretch;
-  
+`;
+
+const AStyled = styled.a`
+  color: var(--clr-text);
+  text-decoration: none;
+  margin-bottom: 2.6rem;
+  flex-shrink: 0;
+
+  &:visited {
+    color: var(--clr-text);
+  }
 `;
 
 export default function Countries({countries, updatePage}) {
   if (countries.status === 404) {
-    return (<h1>not found</h1>);
+    return (<h2>not found</h2>);
   }
 
   return (

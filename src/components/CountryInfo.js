@@ -6,21 +6,35 @@ import {useState, useEffect} from 'react';
 const ContainerStyled = styled.article`
   img {
     width: 100%;
-    margin: 2rem 0;
+    margin: 4rem 0;
+    margin-bottom: 2rem;
+    aspect-ratio: 640 / 460;
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
+    margin-top: 0.25rem;
     margin-bottom: 1.5rem;
   }
 
   div {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .border-countries {
+    margin-top: -0.8rem;
+
+    p {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
   }
 
   p {
+    font-size: 0.88rem;
     font-weight: 600;
-    margin: 0.5rem 0;
+    margin-bottom: 0.8rem;
   }
 
   span {
@@ -35,9 +49,15 @@ const UlStyled = styled.ul`
   gap: 10px;
 
   li {
-    padding: 5px 10px;
+    text-align: center;
+    padding: 7px 15px;
+    flex: 1;
     border-radius: 3px;
     background: var(--clr-background-elements);
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+    font-weight: 300;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
   }
 
   a {
@@ -90,8 +110,8 @@ export default function CountryInfo({updatePage, code}) {
             <p>Currencies: <span>{data.currencies.map(item => item.name).join(', ')}</span></p>
             <p>Languages: <span>{data.languages.map(item => item.name).join(', ')}</span></p>
           </div>
-          <div>
-            <p>Border countries:</p>
+          <div className='border-countries'>
+            <p>Border Countries:</p>
             {!borderCountries ?
               <Spinner /> :
               <UlStyled>
