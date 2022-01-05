@@ -56,15 +56,18 @@ export default function CountryInfo({updatePage, code}) {
     .then(response => response.json()).then(data => {
       console.log(data);
       setData(data);
-
-      fetch(`https://restcountries.com/v2/alpha?codes=${data.borders.join(',')}`)
-      .then(response => response.json())
-      .then(data => setBorderCountries(data.map(item => {
-        return {
-          name: item.name,
-          alpha3Code: item.alpha3Code
-        };
-      })))
+      if (data.borders) {
+        fetch(`https://restcountries.com/v2/alpha?codes=${data.borders.join(',')}`)
+        .then(response => response.json())
+        .then(data => setBorderCountries(data.map(item => {
+          return {
+            name: item.name,
+            alpha3Code: item.alpha3Code
+          };
+        })));
+      } else {
+        setBorderCountries('none');
+      }
     });
   }, [code]);
 
@@ -92,7 +95,7 @@ export default function CountryInfo({updatePage, code}) {
             {!borderCountries ?
               <Spinner /> :
               <UlStyled>
-                {borderCountries.map(country => (
+                {borderCountries === 'none' ? 'None' : borderCountries.map(country => (
                   <li key={country.alpha3Code} onClick={() => setData(null)}>
                     <a href={`#${country.alpha3Code}`} id={country.alpha3Code} onClick={updatePage}>
                       {country.name}

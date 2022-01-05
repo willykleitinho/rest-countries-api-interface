@@ -6,8 +6,10 @@ const sharedStyle = `
   background: var(--clr-background-elements);
   color: var(--clr-text);
   border: 0;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   border-radius: 7px;
+  font-size: 0.75rem;
+  font-weight: 300;
 `;
 
 const InputStyled = styled.input`
@@ -20,6 +22,7 @@ const InputStyled = styled.input`
 
 const SelectStyled = styled.select`
   ${sharedStyle}
+  margin-bottom: 33px;
 `;
 
 const FormStyled = styled.form`
