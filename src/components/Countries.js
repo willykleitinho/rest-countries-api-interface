@@ -56,9 +56,14 @@ function Country({flagSrc, name, population, region, capital}) {
 const DivStyled = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: stretch;
   gap: 2.6rem;
+
+  @media (min-width: 1110px) {
+    gap: 4.5rem;
+  }
+
 `;
 
 const AStyled = styled.a`

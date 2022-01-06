@@ -18,6 +18,18 @@ const HeaderStyled = styled.header`
     font-family: var(--font-family);
     font-size: 0.8rem;
   }
+
+  @media (min-width: 760px) {
+    padding: 1.5rem var(--side-padding);
+
+    .title {
+      font-size: 1.45rem;
+    }
+
+    button {
+      font-size: 1rem;
+    }
+  }
 `;
 
 export default function Header() {

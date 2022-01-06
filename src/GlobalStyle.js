@@ -38,6 +38,12 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  @media  (min-width: 760px) {
+    :root {
+      --side-padding: 5rem;
+    }
+  }
+
   * {
     box-sizing: border-box;
     margin: 0;

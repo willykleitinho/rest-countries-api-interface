@@ -10,6 +10,10 @@ import styled from 'styled-components';
 
 const ContainerStyled = styled.main`
   padding: 1.5rem var(--side-padding);
+
+  @media (min-width: 768px) {
+    padding: 3rem var(--side-padding);
+  }
 `;
 
 // utility: delay code

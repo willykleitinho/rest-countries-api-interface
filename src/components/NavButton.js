@@ -10,9 +10,16 @@ const AStyled = styled.a`
   border-radius: 4px;
   font-size: 0.8rem;
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
+  font-family: var(--font-family);
 
   span {
     margin-right: 15px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+    padding:0.5rem 2rem;
+    padding-right: calc(2rem + 5px);
   }
 `;
 

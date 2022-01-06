@@ -9,6 +9,12 @@ const sharedStyle = `
   border-radius: 7px;
   font-size: 0.75rem;
   font-weight: 300;
+  font-family: var(--font-family);
+
+  @media (min-width: 760px) {
+    font-size: 1rem;
+    padding: 1.1rem 1.5rem;
+  }
 `;
 
 const InputStyled = styled.input`
@@ -19,24 +25,29 @@ const InputStyled = styled.input`
   &:focus {
     outline: 1px solid white;
   }
+
 `;
 
 const SelectStyled = styled.select`
   ${sharedStyle}
   width: 12.5rem;
   flex: 0;
-  `;
+`;
 
 const FormStyled = styled.form`
   display: flex;
   flex-wrap: wrap;
   gap: 2.5rem;
   justify-content: space-between;
+  margin-bottom: 33px;
 
   input {
     flex: 1;
   }
-  margin-bottom: 33px;
+
+  @media (min-width: 760px) {
+    margin-bottom: 3rem;
+  }
 `;
 
 export default function SearchForm({handleSubmit, setFilter}) {
