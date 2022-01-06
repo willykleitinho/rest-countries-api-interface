@@ -30,7 +30,12 @@ const GlobalStyle = createGlobalStyle`
     */
 
     --side-padding: 1rem;
-    
+  }
+
+  @media (min-width: 420px) {
+    :root {
+      --side-padding: 4rem;
+    }
   }
 
   * {

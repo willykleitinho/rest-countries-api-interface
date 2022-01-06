@@ -6,7 +6,6 @@ const sharedStyle = `
   background: var(--clr-background-elements);
   color: var(--clr-text);
   border: 0;
-  margin-bottom: 2.5rem;
   border-radius: 7px;
   font-size: 0.75rem;
   font-weight: 300;
@@ -14,7 +13,9 @@ const sharedStyle = `
 
 const InputStyled = styled.input`
   ${sharedStyle}
-  
+  max-width: 30rem;
+  min-width: 15rem;
+
   &:focus {
     outline: 1px solid white;
   }
@@ -22,15 +23,23 @@ const InputStyled = styled.input`
 
 const SelectStyled = styled.select`
   ${sharedStyle}
-  margin-bottom: 33px;
-`;
+  width: 12.5rem;
+  flex: 0;
+  `;
 
 const FormStyled = styled.form`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  justify-content: space-between;
+
+  input {
+    flex: 1;
+  }
+  margin-bottom: 33px;
 `;
 
-export default function SearchForm({handleSubmit}) {
+export default function SearchForm({handleSubmit, setFilter}) {
   const [value, setValue] = useState('');
 
   return (
@@ -39,13 +48,13 @@ export default function SearchForm({handleSubmit}) {
         onChange={(e) => setValue(e.target.value)}
         placeholder='Search for a country...' />
       
-      <SelectStyled name='region'>
+      <SelectStyled onChange={(ev) => setFilter(ev.target.value)} name='region'>
         <option value=''>Filter by Region</option>
-        <option value='africa'>Africa</option>
-        <option value='america'>America</option>
-        <option value='asia'>Asia</option>
-        <option value='europe'>Europe</option>
-        <option value='oceania'>Oceania</option>
+        <option value='Africa'>Africa</option>
+        <option value='Americas'>Americas</option>
+        <option value='Asia'>Asia</option>
+        <option value='Europe'>Europe</option>
+        <option value='Oceania'>Oceania</option>
       </SelectStyled>
     </FormStyled>
   );

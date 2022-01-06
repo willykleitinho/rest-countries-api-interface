@@ -1,4 +1,5 @@
 import Spinner from './Spinner';
+import Error from './Error';
 
 import styled from 'styled-components';
 import {useState, useEffect} from 'react';
@@ -58,6 +59,8 @@ const UlStyled = styled.ul`
     letter-spacing: 0.5px;
     font-weight: 300;
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
+    display: grid;
+    place-items: center;
   }
 
   a {
@@ -74,7 +77,11 @@ export default function CountryInfo({updatePage, code}) {
   useEffect(() => {
     fetch(`https://restcountries.com/v2/alpha/${code}`)
     .then(response => response.json()).then(data => {
-      console.log(data);
+      
+      if (data.message) {
+        throw(new Error(data.message));
+      }
+
       setData(data);
       if (data.borders) {
         fetch(`https://restcountries.com/v2/alpha?codes=${data.borders.join(',')}`)
@@ -88,8 +95,13 @@ export default function CountryInfo({updatePage, code}) {
       } else {
         setBorderCountries('none');
       }
-    });
+    })
+    .catch(err => setData('error'));
   }, [code]);
+
+  if (data === 'error') {
+    return (<Error message='Something went wrong...' />);
+  }
 
   return (
     <ContainerStyled>

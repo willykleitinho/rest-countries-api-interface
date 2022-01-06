@@ -1,3 +1,5 @@
+import Error from './Error';
+
 import styled from 'styled-components';
 
 const SectionStyled = styled.section`
@@ -37,7 +39,6 @@ const SectionStyled = styled.section`
 function Country({flagSrc, name, population, region, capital}) {
   return (
     <SectionStyled>
-      {/* <img src={flagSrc} alt='flag' /> */}
       <div className='flag' style={{
         background: `url(${flagSrc}) center center`,
         backgroundSize: 'cover'
@@ -57,22 +58,26 @@ const DivStyled = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: stretch;
+  gap: 2.6rem;
 `;
 
 const AStyled = styled.a`
   color: var(--clr-text);
   text-decoration: none;
-  margin-bottom: 2.6rem;
   flex-shrink: 0;
 
   &:visited {
     color: var(--clr-text);
   }
+
+  & > * {
+    height: 100%;
+  }
 `;
 
 export default function Countries({countries, updatePage}) {
-  if (countries.status === 404) {
-    return (<h2>not found</h2>);
+  if (countries === 'error') {
+    return (<Error message={'Something went wrong...'} />);
   }
 
   return (
