@@ -16,11 +16,6 @@ const ContainerStyled = styled.main`
   }
 `;
 
-// utility: delay code
-// const delay = ms => new Promise(res => setTimeout(res, ms));
-
-
-// suspense for data fetching do not work
 export default function App() {
 
   const [page, setPage] = useState('main');
