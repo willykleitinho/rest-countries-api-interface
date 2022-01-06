@@ -3,7 +3,7 @@ import CountryInfo from './CountryInfo';
 
 import styled from 'styled-components';
 
-const ContainerStyled = styled.div`
+const ContainerStyled = styled.main`
   padding: 2.25rem 1.75rem;
 
   @media (min-width: 768px) {
