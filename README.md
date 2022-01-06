@@ -33,7 +33,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [on Frontend Mentor](https://your-solution-url.com)
+- Solution URL: [on Frontend Mentor](https://www.frontendmentor.io/solutions/responsive-rest-countries-interface-using-react-and-styled-components-ZwmXpEHVQ)
 - Live Site URL: [on Netlify](https://sharp-nightingale-e918a0.netlify.app)
 
 ## My process
