@@ -19,13 +19,16 @@ const sharedStyle = `
 
 const InputStyled = styled.input`
   ${sharedStyle}
-  max-width: 30rem;
-  min-width: 15rem;
+  width: 100%; 
+  padding-left: 4rem;
 
   &:focus {
     outline: 1px solid white;
   }
 
+  @media (min-width: 760px) {
+    padding-left: 5rem;
+  }
 `;
 
 const SelectStyled = styled.select`
@@ -45,8 +48,30 @@ const FormStyled = styled.form`
     flex: 1;
   }
 
+  .input-container {
+    flex: 1;
+    min-width: 15rem;
+    max-width: 30rem;
+    position: relative;
+  }
+
+  .input-container::before {
+    display: block;
+    content: '🔎';
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    font-size: 1.5rem;
+  }
+
   @media (min-width: 760px) {
     margin-bottom: 3rem;
+    
+    .input-container::before {
+      top: 15%;
+      left: 4%;
+      font-size: 1.75rem;
+    }
   }
 `;
 
@@ -55,10 +80,12 @@ export default function SearchForm({handleSubmit, setFilter}) {
 
   return (
     <FormStyled onSubmit={handleSubmit}>
-      <InputStyled name='name' type='text' value={value}
-        onChange={(e) => setValue(e.target.value)}
-        placeholder='Search for a country...' />
-      
+      <div className='input-container'>
+        <InputStyled name='name' type='text' value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder='Search for a country...' />
+      </div>
+
       <SelectStyled onChange={(ev) => setFilter(ev.target.value)} name='region'>
         <option value=''>Filter by Region</option>
         <option value='Africa'>Africa</option>
