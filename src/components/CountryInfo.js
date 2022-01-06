@@ -131,6 +131,9 @@ const UlStyled = styled.ul`
   }
 
   @media (min-width: 760px) {
+    li {
+      font-size: 0.88rem;
+    }
   }
 `;
 
