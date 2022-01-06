@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 const DivStyled = styled.div`
   padding: 1.5rem 1rem;
-
+  width: 100%;
+  
   div {
     width: 40px;
     height: 40px;
