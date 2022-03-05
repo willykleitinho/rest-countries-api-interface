@@ -21,7 +21,8 @@ export default function App() {
   const [page, setPage] = useState('main');
   const [countries, setCountries] = useState(null);
   const [filter, setFilter] = useState('');
-
+  const [showAll, setShowAll] = useState(false);
+  
   useEffect(() => {
     fetch('https://restcountries.com/v2/alpha?codes=DEU,USA,BRA,ISL,AFG,ALA,ALB,DZA')
       .then(response => response.json()).then(data => setCountries(data));
@@ -56,6 +57,15 @@ export default function App() {
     ev.preventDefault();
     setPage(ev.currentTarget.id);
   }
+  
+  function fetchAll(ev) {
+    ev.preventDefault();
+    
+    fetch('https://restcountries.com/v2/all')
+      .then(response => response.json()).then(data => setCountries(data));
+    
+    setShowAll(true);
+  }
 
   return (
     <>
@@ -66,7 +76,7 @@ export default function App() {
             <SearchForm handleSubmit={handleSearchForm} setFilter={setFilter} />
             {!countries ?
               <Spinner /> :
-              (countries === 'error') ? <Error message='Something went wrong...' /> : <Countries countries={countries.filter(item => (!filter) ? true : item.region === filter)} updatePage={updatePage} />}
+              (countries === 'error') ? <Error message='Something went wrong...' /> : <Countries countries={countries.filter(item => (!filter) ? true : item.region === filter)} showAll={showAll} fetchAll={fetchAll} updatePage={updatePage} />}
           </ContainerStyled>
           )
         : (<Details code={page} backToMainPage={backToMainPage} updatePage={updatePage} page={page} />)
