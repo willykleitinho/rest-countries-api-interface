@@ -59,11 +59,34 @@ const DivStyled = styled.div`
   justify-content: center;
   align-items: stretch;
   gap: 2.6rem;
+  position: relative;
 
   @media (min-width: 1110px) {
     gap: 4.5rem;
   }
-
+  
+  .show-all {
+    display: block;
+    position: absolute;
+    top: -1rem;
+    left: 0;
+    right: 0;
+    
+    button {
+      color: color: var(--clr-text);
+      text-align: center;
+      background: transparent;
+      border: none;
+      font-size: 1rem;
+      display: inline-block;
+      margin: auto;
+      padding: 0.5rem;
+      text-decoration: underline;
+      
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
 `;
 
 const AStyled = styled.a`
@@ -80,13 +103,14 @@ const AStyled = styled.a`
   }
 `;
 
-export default function Countries({countries, updatePage}) {
+export default function Countries({countries, updatePage, showAll, fetchAll}) {
   if (countries === 'error') {
     return (<Error message={'Something went wrong...'} />);
   }
 
   return (
     <DivStyled>
+      {!showAll && (<div className='show-all'><button onClick={fetchAll}></button></div>)}
       {countries.map(({alpha3Code, name, flags, population, region, capital}) => {
         return (
           <AStyled key={alpha3Code} id={alpha3Code} href={`#${alpha3Code}`} onClick={updatePage}>
