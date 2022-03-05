@@ -68,7 +68,7 @@ const DivStyled = styled.div`
   .show-all {
     display: block;
     position: absolute;
-    top: -1rem;
+    top: -2rem;
     left: 0;
     right: 0;
     display: flex;
@@ -86,6 +86,12 @@ const DivStyled = styled.div`
       
       &:hover {
         transform: scale(1.1);
+      }
+    }
+    
+    @media (min-width: 760px) {
+      .show-all {
+        top: -2.5rem;
       }
     }
 `;
