@@ -59,10 +59,12 @@ export default function App() {
   }
   
   function fetchAll(ev) {
-    ev.preventDefault();
+    ev.stopPropagation();
+    setCountries(null);
     
     fetch('https://restcountries.com/v2/all')
-      .then(response => response.json()).then(data => setCountries(data));
+      .then(response => response.json()).then(data => setCountries(data))
+      .catch(err => setCountries('error'));
     
     setShowAll(true);
   }
