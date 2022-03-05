@@ -71,6 +71,7 @@ const DivStyled = styled.div`
     top: -1rem;
     left: 0;
     right: 0;
+    display: flex;
     
     button {
       color: color: var(--clr-text);
@@ -110,7 +111,7 @@ export default function Countries({countries, updatePage, showAll, fetchAll}) {
 
   return (
     <DivStyled>
-      {!showAll && (<div className='show-all'><button onClick={fetchAll}></button></div>)}
+      {!showAll && (<div className='show-all'><button onClick={fetchAll}>Show all</button></div>)}
       {countries.map(({alpha3Code, name, flags, population, region, capital}) => {
         return (
           <AStyled key={alpha3Code} id={alpha3Code} href={`#${alpha3Code}`} onClick={updatePage}>
