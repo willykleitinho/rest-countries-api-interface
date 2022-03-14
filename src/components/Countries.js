@@ -88,12 +88,13 @@ const DivStyled = styled.div`
         transform: scale(1.1);
       }
     }
-    
-    @media (min-width: 760px) {
-      .show-all {
-        top: -2.5rem;
-      }
+  }
+  
+  @media (min-width: 760px) {
+    .show-all {
+      top: -2.5rem;
     }
+  }
 `;
 
 const AStyled = styled.a`
